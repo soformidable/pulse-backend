@@ -4,12 +4,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const app = express();
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type']
-}));
+app.use(cors({ origin: '*', methods: ['GET','POST','PUT','DELETE'], allowedHeaders: ['Content-Type'] }));
 app.use(express.json());
+app.use(express.static('public'));
 
 const workoutSchema = new mongoose.Schema({ date: String, duration: Number, exercises: Array }, { timestamps: true });
 const recordSchema  = new mongoose.Schema({ exId: { type: String, unique: true }, weight: Number, reps: Number, date: String });
